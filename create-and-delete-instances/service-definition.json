@@ -1,0 +1,33 @@
+{
+  "cluster": "${ECS_CLUSTER_NAME}",
+  "serviceName": "${ECS_SERVICE_NAME}",
+  "taskDefinition": "${ECS_TASK_FAMILY}",
+  "loadBalancers": [
+    {
+      "targetGroupArn": "__TARGET_GROUP_ARN_PLACEHOLDER__",
+      "containerName": "Go",
+      "containerPort": 8000
+    }
+  ],
+  "desiredCount": 1,
+  "capacityProviderStrategy": [
+    {
+      "capacityProvider": "FARGATE",
+      "weight": 1,
+      "base": 0
+    }
+  ],
+  "platformVersion": "LATEST",
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "subnets": [],
+      "securityGroups": ["__SG_API_ID_PLACEHOLDER__"],
+      "assignPublicIp": "ENABLED"
+    }
+  },
+  "healthCheckGracePeriodSeconds": 60,
+  "schedulingStrategy": "REPLICA",
+  "enableECSManagedTags": true,
+  "propagateTags": "NONE",
+  "enableExecuteCommand": false
+}
